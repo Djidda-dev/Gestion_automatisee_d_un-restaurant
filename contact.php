@@ -70,7 +70,7 @@
     </div>
     <div class="coord-item">
         <span class="coord-label">Site Web :</span>
-        <a href="http://www.CantineGuildja.com" class="coord-value coord-link">www.CantineGuildja.com</a>
+        <a href="http://www.RestaurantGuildja.com" class="coord-value coord-link">www.RestaurantGuildja.com</a>
     </div>
 </div>
 

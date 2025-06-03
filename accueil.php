@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Cantine Site Web</title>
+    <title>Restaurant</title>
     <style>
         /* Styles pour le corps de la page */
         body {
