@@ -3,12 +3,9 @@ session_start();
 require_once("bdd.php");
 
 // Vérifie si l'utilisateur est connecté et s'il est administrateur
-$est_admin = false; // Définir par défaut à false
+$est_admin = false;
 if(isset($_SESSION['id_utilisateur'])) {
-    // Récupère l'ID de l'utilisateur connecté depuis la session
     $id_utilisateur = $_SESSION['id_utilisateur'];
-
-    // Vérifie si l'utilisateur est administrateur
     if(isset($_SESSION['role_utilisateur']) && $_SESSION['role_utilisateur'] == 'admin') {
         $est_admin = true;
     }
@@ -22,7 +19,7 @@ if(isset($_SESSION['id_utilisateur'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les plats disponibles</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Votre fichier CSS personnalisé -->
+    <link rel="stylesheet" href="styles.css">
     <style>
 
                 /* Styles pour la section du profil */
@@ -136,9 +133,12 @@ if(isset($_SESSION['id_utilisateur'])) {
 <div class="navbar">
     <a href="cantine.html">Accueil</a>
     <a href="contact.php">Contact</a>
+    <?php if(isset($_SESSION['id_utilisateur'])): ?>
+        <a href="logout.php">Déconnexion</a>
+    <?php endif; ?>
     <?php if($est_admin): ?>
-    <a href="ajoutplat.php">Ajouter une nouvelle plat</a>
-    <a href="affichcmd.php">Historique des commandes</a>
+        <a href="ajoutplat.php">Ajouter une nouvelle plat</a>
+        <a href="affichcmd.php">Historique des commandes</a>
     <?php endif; ?>
     <form class="form-inline ml-auto" action="recherche.php" method="GET">
         <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="q">
@@ -191,10 +191,18 @@ if(isset($_SESSION['id_utilisateur'])) {
                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Supprimer</button>
                             </form>
                         <?php endif; ?>
-                        <form action="passer_commande.php" method="POST">
-                            <input type="hidden" name="plat_id" value="<?php echo $plats['id']; ?>">
-                            <button type="submit" class="btn btn-success btn-commander"><i class="fas fa-utensils"></i> Commander</button>
-                        </form>
+                        <?php if(isset($_SESSION['id_utilisateur'])): ?>
+                            <form action="passer_commande.php" method="POST">
+                                <input type="hidden" name="plat_id" value="<?php echo $plats['id']; ?>">
+                                <button type="submit" class="btn btn-success btn-commander">
+                                    <i class="fas fa-utensils"></i> Commander
+                                </button>
+                            </form>
+                        <?php else: ?>
+                            <a href="login.php" class="btn btn-warning">
+                                Se connecter pour commander
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

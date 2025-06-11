@@ -24,7 +24,7 @@ if(isset($_POST['valider'])) {
             $_SESSION['id_utilisateur'] = $utilisateur['id'];
             $_SESSION['role_utilisateur'] = $utilisateur['role'];
             if ($_SESSION['role_utilisateur'] === 'admin') {
-                header("Location: affichplat.php"); // Redirection vers la page d'affichage des plats pour les administrateurs
+                header("Location: admin_dashboard.php"); // Redirection vers la page d'affichage des plats pour les administrateurs
             } else {
                 header("Location: affichplat.php"); // Redirection vers la page d'affichage des plats pour les utilisateurs normaux
             }
