@@ -101,6 +101,8 @@ $dernieresCommandes = $bdd->query("
             <a class="nav-link" href="affichplat.php"><i class="fas fa-list"></i> Voir les plats</a>
             <a class="nav-link" href="affichcmd.php"><i class="fas fa-history"></i> Historique commandes</a>
             <a class="nav-link" href="gestion_commandes.php"><i class="fas fa-tasks"></i> Gérer les commandes</a>
+                        <a class="nav-link" href="gestion_reservations.php"><i class="fas fa-tasks"></i> Gérer les reservations</a>
+            <a href="reservation.php" class="nav-link"><i class="fas fa-calendar-plus"></i> Réserver</a>
             <a class="nav-link" href="recherche.php"><i class="fas fa-search"></i> Recherche</a>
             <a class="nav-link text-danger" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
         </nav>

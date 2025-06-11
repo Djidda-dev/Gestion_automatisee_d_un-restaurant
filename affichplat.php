@@ -133,6 +133,7 @@ if(isset($_SESSION['id_utilisateur'])) {
 <div class="navbar">
     <a href="cantine.html">Accueil</a>
     <a href="contact.php">Contact</a>
+
     <?php if(isset($_SESSION['id_utilisateur'])): ?>
         <a href="logout.php">Déconnexion</a>
     <?php endif; ?>
