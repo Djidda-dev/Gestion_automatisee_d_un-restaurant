@@ -1,240 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cantine.css">
-    <link rel = "preconnect" href = "https://fonts.gstatic.com">
+    <title>Accueil Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>accueil restaurant</title>
-<body>
-<header>
-    <a href="#" class="logo"><span>Res</span>taurant</a>
-    <div class="menuToggle" onclick="toggleMenu();"></div>
-    <ul class="navbar">
-        <li><a href="#banniere" onclick="toggleMenu();">Accueil</a></li>
-        <li><a href="reservation.php" class="nav-link"><i class="fas fa-calendar-plus"></i> Réserver</a></li>
-        <li><a href="#apropos" onclick="toggleMenu();">A propos</a></li>
-        <li><a href="#menu" onclick="toggleMenu();">Plats</a></li>
-        <li><a href="#expert" onclick="toggleMenu();">Expert</a></li>
-        <li><a href="login.php" onclick="toggleMenu();">Se Connecter</a></li>
-        <li><a href="contact.php" onclick="toggleMenu();">Contact</a></li>
-        <!-- <a href="#" class="btn-reserve"onclick="toggleMenu();">Reservation</a> -->
-    </ul>
-</header>
-<section class="banniere" id="banniere">
-    <div class="contenu">
-        <h2>Que Des Plats Délicieux</h2>
-        <p>Découvrez une variété de plats délicieux, préparés avec passion et dévouement. Chaque bouchée est un voyage culinaire, une explosion de saveurs qui éveillera vos sens.</p>
-        <a href="affichplat.php" class="btn1">Nos plats à commander </a>
-        <!-- <a href="#" class="btn2">Reservation</a> -->
-    </div>
-</section>
-<section class="apropos" id="apropos">
-    <div class="row">
-        <div class="col50">
-            <h2 class="titre-texte"><span>A</span> Propos De Nous</h2>
-            <p>Nous sommes une équipe dédiée à la création de plats délicieux et mémorables. Notre passion pour la cuisine nous pousse à innover constamment et à chercher les meilleurs ingrédients pour nos recettes. Nous croyons que la nourriture est plus qu'un simple repas, c'est une expérience à partager.</p>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navbar -->
+    <header class="bg-gray-900 text-white shadow sticky top-0 z-50">
+        <div class="container mx-auto flex items-center justify-between py-4 px-4">
+            <a href="#" class="text-2xl font-bold tracking-wide flex items-center">
+                <span class="text-yellow-400">Res</span>taurant
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#banniere" class="hover:text-yellow-400 transition">Accueil</a>
+                <a href="#apropos" class="hover:text-yellow-400 transition">A propos</a>
+                <a href="#menu" class="hover:text-yellow-400 transition">Plats</a>
+                <a href="#expert" class="hover:text-yellow-400 transition">Expert</a>
+                <a href="login.php" class="hover:text-yellow-400 transition">Se Connecter</a>
+                <a href="contact.php" class="hover:text-yellow-400 transition">Contact</a>
+            </nav>
+            <button id="menuBtn" class="md:hidden text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-gray-800 px-4 pb-4">
+            <a href="#banniere" class="block py-2 hover:text-yellow-400">Accueil</a>
+            <a href="#apropos" class="block py-2 hover:text-yellow-400">A propos</a>
+            <a href="#menu" class="block py-2 hover:text-yellow-400">Plats</a>
+            <a href="#expert" class="block py-2 hover:text-yellow-400">Expert</a>
+            <a href="login.php" class="block py-2 hover:text-yellow-400">Se Connecter</a>
+            <a href="contact.php" class="block py-2 hover:text-yellow-400">Contact</a>
+        </div>
+    </header>
 
-        <div class="col50">
-            <div class="img">
-                <img src="img/ayimolou.jpg" alt="image">
+    <!-- Bannière -->
+    <section class="banniere bg-gradient-to-r from-yellow-100 to-yellow-300 py-16" id="banniere">
+        <div class="container mx-auto px-4 flex flex-col items-center text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Que Des Plats Délicieux</h2>
+            <p class="mb-8 text-lg md:text-xl text-gray-700 max-w-2xl">
+                Découvrez une variété de plats délicieux, préparés avec passion et dévouement. Chaque bouchée est un voyage culinaire, une explosion de saveurs qui éveillera vos sens.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4">
+                <a href="affichplat.php" class="btn1 px-8 py-3 rounded-full bg-yellow-500 text-white font-semibold shadow hover:bg-yellow-600 transition">
+                    Nos plats à commander
+                </a>
+                <a href="reservation.php" class="btn2 px-8 py-3 rounded-full bg-gray-900 text-yellow-400 font-semibold shadow hover:bg-gray-800 transition">
+                    Réservation
+                </a>
             </div>
         </div>
-    </div>
-</section>
-<section class="menu" id="menu">
-    <div class="titre">
-        <h2 class="titre-texte"><span>P</span>lats</h2>
-        <p>Découvrez notre sélection de plats savoureux, préparés avec soin et passion pour satisfaire vos papilles.</p>
-    </div>
-    <div class="contenu">
-        <div class="box">
-            <div class="imbox">
-                <img src="img/ayimolou.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>ayimolou</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cometogo.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Pate</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/macca.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Spacagathi togo</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/téléchargement.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Poisson de fumé</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/c5.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Special salade</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/c6.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Special salade</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/c7.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Poulet du zenith</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/c8.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Special salade</h3>
-            </div>
-        </div>
-    </div>
- </div>
- <div class="titre">
-    <a href="#" class="btn1">Voir Plus</a>
- </div>
-</section>
-<section class="expert" id="expert">
-    <div class="titre">
-        <h2 class="titre-texte">Nos <span>E</span>xperts</h2>
-                <p>Rencontrez nos experts culinaires, dévoués à la création de plats délicieux et innovants pour votre plaisir.</p>
-    </div>
-    <div class="contenu">
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cuisiniere0.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Aicha</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cuisinier0.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Barka</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cuisiniere1.jpg" alt="">
-                
-            </div>
-            <div class="text">
-                <h3>Koffi</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cuisinier.jpg" alt="">
-            </div>
-            <div class="text">
-                <h3>Safia </h3>
-            </div>
-        </div>
-    </div>
- </div>
-</section>
- <section class="temoignage" id="temoignage">
-    <div class="titre blanc">
-        <h2 class="titre-texte">Que Disent Nos <span>C</span>lients</h2>
-        <p>Découvrez ce que nos clients disent de nous. Leur satisfaction est notre plus grande récompense et nous sommes fiers de partager leurs témoignages avec vous.</p>
-    </div>
-    <div class="contenu">
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cuisinier.jpg" alt="">
-            </div>
-            <div class="text">
-                <p>Découvrez ce que nos clients disent de nous. Leur satisfaction est notre plus grande récompense et nous sommes fiers de partager leurs témoignages avec vous.</p>
-                <h3>Bilal</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cuisiniere0.jpg" alt="">
-            </div>
-            <div class="text">
-                <p>Découvrez ce que nos clients disent de nous. Leur satisfaction est notre plus grande récompense et nous sommes fiers de partager leurs témoignages avec vous.</p>
-                <h3>safia</h3>
-            </div>
-        </div>
-        <div class="box">
-            <div class="imbox">
-                <img src="img/cuisinier0.jpg" alt="">
-            </div>
-            <div class="text">
-                <p>Découvrez ce que nos clients disent de nous. Leur satisfaction est notre plus grande récompense et nous sommes fiers de partager leurs témoignages avec vous.</p>
-                <h3>koffi</h3>
-            </div>
-        </div>
-    </div>
- </section>
- <section class="contact" id="contact">
-     <div class="titre noir">
-         <h2 class="titre-text"><span>C</span>ontact</h2>
-         <p>N'hésitez pas à nous contacter pour toute question ou commentaire. Nous sommes toujours ravis d'entendre parler de nos clients et nous nous efforçons de répondre à toutes les demandes dans les plus brefs délais.</p>
-     </div>
-     <div class="contactform">
-         <h3>Envoyer un message</h3>
-         <div class="inputboite">
-             <input type="text" placeholder="Nom">
-         </div>
-         <div class="inputboite">
-            <input type="text" placeholder="email">
-         </div>
-         <div class="inputboite">
-            <textarea placeholder="message"></textarea>
-         </div>
-         <div class="inputboite">
-             <input type="submit" value="envoyer">
-         </div>
-     </div>
- </section>
- <div class="copyright">
-     <p>copyright 2025 <a href="#">Guildja</a> Tous droits reservé</p>
- </div>
- <script type="text/javascript">
-     window.addEventListener('scroll', function(){
-         const header =document.querySelector('header');
-         header.classList.toggle("sticky", window.scrollY > 0 );
-     });
+    </section>
 
-     function toggleMenu(){
-         const tmenuToggle = document.querySelector('.menuToggle');
-         const navbar = document.querySelector('.navbar');
-         navbar.classList.toggle('active');
-         menuToggle.classList.toggle('active');
-     }
- </script>
+    <!-- À propos -->
+    <section class="py-16 bg-white" id="apropos">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h2 class="text-3xl font-bold mb-4"><span class="text-yellow-500">A</span> Propos De Nous</h2>
+                <p class="text-gray-700">
+                    Nous sommes une équipe dédiée à la création de plats délicieux et mémorables. Notre passion pour la cuisine nous pousse à innover constamment et à chercher les meilleurs ingrédients pour nos recettes. Nous croyons que la nourriture est plus qu'un simple repas, c'est une expérience à partager.
+                </p>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="img/ayimolou.jpg" alt="image" class="rounded-xl shadow-lg w-80 h-64 object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="py-16 bg-gray-50" id="menu">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2"><span class="text-yellow-500">P</span>lats</h2>
+                <p class="text-gray-600">Découvrez notre sélection de plats savoureux, préparés avec soin et passion pour satisfaire vos papilles.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/ayimolou.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Ayimolou</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/cometogo.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Pâte</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/macca.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Spaghetti Togo</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/téléchargement.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Poisson fumé</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/c5.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Spécial salade</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/c6.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Spécial salade</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/c7.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Poulet du Zenith</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
+                    <img src="img/c8.jpg" alt="" class="w-40 h-32 object-cover rounded-lg mb-3">
+                    <h3 class="font-semibold text-lg">Spécial salade</h3>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="affichplat.php" class="inline-block px-8 py-3 rounded-full bg-yellow-500 text-white font-semibold shadow hover:bg-yellow-600 transition">Voir Plus</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experts -->
+    <section class="py-16 bg-white" id="expert">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2">Nos <span class="text-yellow-500">E</span>xperts</h2>
+                <p class="text-gray-600">Rencontrez nos experts culinaires, dévoués à la création de plats délicieux et innovants pour votre plaisir.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="bg-gray-100 rounded-xl shadow p-4 flex flex-col items-center">
+                    <img src="img/cuisiniere0.jpg" alt="" class="w-28 h-28 object-cover rounded-full mb-3">
+                    <h3 class="font-semibold text-lg">Aicha</h3>
+                </div>
+                <div class="bg-gray-100 rounded-xl shadow p-4 flex flex-col items-center">
+                    <img src="img/cuisinier0.jpg" alt="" class="w-28 h-28 object-cover rounded-full mb-3">
+                    <h3 class="font-semibold text-lg">Barka</h3>
+                </div>
+                <div class="bg-gray-100 rounded-xl shadow p-4 flex flex-col items-center">
+                    <img src="img/cuisiniere1.jpg" alt="" class="w-28 h-28 object-cover rounded-full mb-3">
+                    <h3 class="font-semibold text-lg">Koffi</h3>
+                </div>
+                <div class="bg-gray-100 rounded-xl shadow p-4 flex flex-col items-center">
+                    <img src="img/cuisinier.jpg" alt="" class="w-28 h-28 object-cover rounded-full mb-3">
+                    <h3 class="font-semibold text-lg">Safia</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="py-16 bg-yellow-50" id="temoignage">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2">Que Disent Nos <span class="text-yellow-500">C</span>lients</h2>
+                <p class="text-gray-600">Découvrez ce que nos clients disent de nous. Leur satisfaction est notre plus grande récompense et nous sommes fiers de partager leurs témoignages avec vous.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+                    <img src="img/cuisinier.jpg" alt="" class="w-20 h-20 object-cover rounded-full mb-3">
+                    <p class="text-gray-700 mb-2">Un service rapide et des plats délicieux. Je recommande vivement !</p>
+                    <h3 class="font-semibold">Bilal</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+                    <img src="img/cuisiniere0.jpg" alt="" class="w-20 h-20 object-cover rounded-full mb-3">
+                    <p class="text-gray-700 mb-2">Des saveurs authentiques et une équipe très accueillante.</p>
+                    <h3 class="font-semibold">Safia</h3>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+                    <img src="img/cuisinier0.jpg" alt="" class="w-20 h-20 object-cover rounded-full mb-3">
+                    <p class="text-gray-700 mb-2">Une expérience culinaire inoubliable à chaque visite.</p>
+                    <h3 class="font-semibold">Koffi</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-16 bg-white" id="contact">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2"><span class="text-yellow-500">C</span>ontact</h2>
+                <p class="text-gray-600">N'hésitez pas à nous contacter pour toute question ou commentaire. Nous sommes toujours ravis d'entendre parler de nos clients et nous nous efforçons de répondre à toutes les demandes dans les plus brefs délais.</p>
+            </div>
+            <form class="max-w-xl mx-auto bg-gray-50 rounded-xl shadow p-8 space-y-4">
+                <input type="text" placeholder="Nom" class="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                <input type="email" placeholder="Email" class="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                <textarea placeholder="Message" class="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+                <button type="submit" class="w-full py-2 rounded bg-yellow-500 text-white font-semibold hover:bg-yellow-600 transition">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-300 py-4 text-center">
+        <p>copyright 2025 <a href="#" class="text-yellow-400 hover:underline">Guildja</a> Tous droits réservés</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        // Menu mobile toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

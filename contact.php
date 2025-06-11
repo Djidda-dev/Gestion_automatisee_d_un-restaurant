@@ -4,75 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos Coordonnées</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Votre fichier CSS personnalisé -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Ajoutez vos styles personnalisés ici si nécessaire */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .coord-item {
-            margin-bottom: 20px;
-        }
-        .coord-item:last-child {
-            margin-bottom: 0;
-        }
-        .coord-label {
-            font-weight: bold;
-        }
-        .coord-value {
-            margin-left: 10px;
-        }
-        .coord-link {
-            color: #007bff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .coord-link:hover {
-            color: #0056b3;
-        }
+        body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
-<body>
-
-<div class="container">
-    <h1>Nos Coordonnées</h1>
-    <div class="coord-item">
-        <span class="coord-label">Adresse :</span>
-        <span class="coord-value">123 Rue Togoville, Lomé, Togo</span>
+<body class="bg-gradient-to-br from-yellow-100 to-yellow-300 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-xl bg-white rounded-xl shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Nos Coordonnées</h1>
+        <div class="space-y-6">
+            <div class="flex items-center">
+                <span class="font-semibold text-gray-700 w-32"><i class="fas fa-map-marker-alt text-yellow-500 mr-2"></i>Adresse :</span>
+                <span class="text-gray-800">123 Rue Togoville, Lomé, Togo</span>
+            </div>
+            <div class="flex items-center">
+                <span class="font-semibold text-gray-700 w-32"><i class="fas fa-location-dot text-yellow-500 mr-2"></i>Quartier :</span>
+                <span class="text-gray-800">Nyékonakpoè au niveau de Carrefour des éperviers</span>
+            </div>
+            <div class="flex items-center">
+                <span class="font-semibold text-gray-700 w-32"><i class="fas fa-phone-alt text-yellow-500 mr-2"></i>Téléphone :</span>
+                <span class="text-gray-800">+228 91304780</span>
+            </div>
+            <div class="flex items-center">
+                <span class="font-semibold text-gray-700 w-32"><i class="fas fa-envelope text-yellow-500 mr-2"></i>Email :</span>
+                <span class="text-gray-800">adoum@gmail.com</span>
+            </div>
+            <div class="flex items-center">
+                <span class="font-semibold text-gray-700 w-32"><i class="fas fa-globe text-yellow-500 mr-2"></i>Site Web :</span>
+                <a href="http://www.RestaurantGuildja.com" class="text-yellow-600 hover:underline" target="_blank">www.RestaurantGuildja.com</a>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <a href="cantine.html" class="inline-block px-6 py-2 rounded bg-yellow-500 text-white font-semibold hover:bg-yellow-600 transition"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+        </div>
     </div>
-    <div class="coord-item">
-        <span class="coord-label">Quartier:</span>
-        <span class="coord-value">Nyékonakpoè au niveau de Carrefour des eperviers</span>
-    </div>
-    <div class="coord-item">
-        <span class="coord-label">Téléphone :</span>
-        <span class="coord-value">+228 91304780</span>
-    </div>
-    <div class="coord-item">
-        <span class="coord-label">Email :</span>
-        <span class="coord-value">adoum@gmail.com</span>
-    </div>
-    <div class="coord-item">
-        <span class="coord-label">Site Web :</span>
-        <a href="http://www.RestaurantGuildja.com" class="coord-value coord-link">www.RestaurantGuildja.com</a>
-    </div>
-</div>
-
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>

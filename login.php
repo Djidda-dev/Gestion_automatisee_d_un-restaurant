@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("bdd.php"); // Inclure le fichier de connexion à la base de données
+require_once("bdd.php");
 
 // Vérifie si le formulaire de connexion a été soumis
 if(isset($_POST['valider'])) {
@@ -14,12 +14,11 @@ if(isset($_POST['valider'])) {
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
         $stmt->execute();
-        
+
         // Récupération du résultat de la requête
         $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($utilisateur) {
-            // Authentification réussie, enregistrer l'ID de l'utilisateur et son rôle dans la session
             $_SESSION['id_utilisateur'] = $utilisateur['id'];
             $_SESSION['role_utilisateur'] = $utilisateur['role'];
             if ($_SESSION['role_utilisateur'] === 'admin') {
@@ -34,60 +33,39 @@ if(isset($_POST['valider'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentification</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Connexion - MaCantine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-        }
-        .login-form {
-            width: 300px;
-            margin: 0 auto;
-            padding: 30px 0;
-            text-align: center;
-        }
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        .login-form input[type="submit"] {
-            padding: 10px 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-        }
-        .login-form input[type="submit"]:hover {
-            background: #444;
-        }
-        .signup-link {
-            display: block;
-            margin-top: 10px;
-        }
+        body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
-<body>
-    <div class="login-form">
-        <h1>Connexion</h1>
+<body class="bg-gradient-to-br from-yellow-100 to-yellow-300 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+        <div class="flex flex-col items-center mb-6">
+            <i class="fas fa-utensils text-yellow-500 text-4xl mb-2"></i>
+            <h1 class="text-2xl font-bold text-gray-800 mb-2">Connexion</h1>
+            <p class="text-gray-500">Connectez-vous à votre espace MaCantine</p>
+        </div>
         <?php if (isset($erreur)): ?>
-            <div class="alert alert-danger"><?php echo $erreur; ?></div>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-center">
+                <?php echo $erreur; ?>
+            </div>
         <?php endif; ?>
-        <form action="login.php" method="post">
-            <input type="text" name="email" class="form-control" placeholder="Adresse Mail" required>
-            <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required>
-            <input type="submit" name="valider" class="btn btn-primary" value="Se connecter">
-            <a href="inscription.php" class="signup-link">S'inscrire</a>
+        <form action="login.php" method="post" class="space-y-4">
+            <input type="text" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Adresse Mail" required>
+            <input type="password" name="mdp" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Mot de passe" required>
+            <input type="submit" name="valider" value="Se connecter" class="w-full py-2 bg-yellow-500 text-white font-semibold rounded hover:bg-yellow-600 transition">
         </form>
+        <div class="text-center mt-4">
+            <a href="inscription.php" class="text-yellow-600 hover:underline">Créer un compte</a>
+        </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>

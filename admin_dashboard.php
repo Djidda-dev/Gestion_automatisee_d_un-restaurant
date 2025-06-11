@@ -28,146 +28,105 @@ $dernieresCommandes = $bdd->query("
 <head>
     <meta charset="UTF-8">
     <title>Tableau de bord Admin - Cantine</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body {
-            background: #f8f9fa;
-        }
-        .sidebar {
-            position: fixed;
-            top: 0; left: 0; bottom: 0;
-            width: 220px;
-            background: #23272b;
-            color: #fff;
-            padding-top: 60px;
-            z-index: 1000;
-            transition: all 0.2s;
-        }
-        .sidebar .nav-link {
-            color: #adb5bd;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            border-radius: 0.5rem;
-            transition: background 0.2s, color 0.2s;
-        }
-        .sidebar .nav-link.active, .sidebar .nav-link:hover {
-            background: #343a40;
-            color: #fff;
-        }
-        .sidebar .sidebar-header {
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            background: #1a1d20;
-            padding: 18px 0;
-            text-align: center;
-            font-size: 1.3rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #343a40;
-        }
-        .main-content {
-            margin-left: 220px;
-            padding: 40px 30px 30px 30px;
-        }
-        .dashboard-card {
-            border-radius: 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-            transition: transform 0.2s;
-        }
-        .dashboard-card:hover { transform: translateY(-5px) scale(1.02);}
-        .dashboard-icon {
-            font-size: 2.5rem;
-            opacity: 0.7;
-        }
-        .quick-actions .btn {
-            margin: 0.3rem;
-        }
-        .table thead th { background: #343a40; color: #fff; }
-        @media (max-width: 991.98px) {
-            .sidebar { width: 100%; height: auto; position: relative; padding-top: 0; }
-            .main-content { margin-left: 0; padding: 20px 5px; }
-        }
-    </style>
 </head>
-<body>
-    <div class="sidebar d-flex flex-column">
-        <div class="sidebar-header">
-            <i class="fas fa-utensils"></i> Admin Cantine
-        </div>
-        <nav class="nav flex-column mt-4 px-3">
-            <a class="nav-link active" href="admin_dashboard.php"><i class="fas fa-chart-line"></i> Dashboard</a>
-            <a class="nav-link" href="ajoutplat.php"><i class="fas fa-plus"></i> Ajouter un plat</a>
-            <a class="nav-link" href="affichplat.php"><i class="fas fa-list"></i> Voir les plats</a>
-            <a class="nav-link" href="affichcmd.php"><i class="fas fa-history"></i> Historique commandes</a>
-            <a class="nav-link" href="gestion_commandes.php"><i class="fas fa-tasks"></i> Gérer les commandes</a>
-                        <a class="nav-link" href="gestion_reservations.php"><i class="fas fa-tasks"></i> Gérer les reservations</a>
-            <a href="reservation.php" class="nav-link"><i class="fas fa-calendar-plus"></i> Réserver</a>
-            <a class="nav-link" href="recherche.php"><i class="fas fa-search"></i> Recherche</a>
-            <a class="nav-link text-danger" href="logout.php"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-        </nav>
-    </div>
-    <div class="main-content">
-        <h2 class="mb-4 text-center">Tableau de bord Administrateur</h2>
-        <div class="row text-center mb-4">
-            <div class="col-md-4 mb-3">
-                <div class="dashboard-card bg-white p-4">
-                    <div class="dashboard-icon text-primary mb-2"><i class="fas fa-receipt"></i></div>
-                    <h4><?php echo $totalCommandes; ?></h4>
-                    <p class="mb-0">Commandes passées</p>
+<body class="bg-gray-100 min-h-screen">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="bg-gray-900 text-gray-100 w-64 flex-shrink-0 flex flex-col">
+            <div class="flex items-center justify-center h-20 border-b border-gray-800">
+                <span class="text-2xl font-bold"><i class="fas fa-utensils mr-2"></i>Admin Cantine</span>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="admin_dashboard.php" class="flex items-center px-3 py-2 rounded-lg bg-gray-800 text-yellow-400 font-semibold">
+                    <i class="fas fa-chart-line mr-2"></i> Dashboard
+                </a>
+                <a href="ajoutplat.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800">
+                    <i class="fas fa-plus mr-2"></i> Ajouter un plat
+                </a>
+                <a href="affichplat.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800">
+                    <i class="fas fa-list mr-2"></i> Voir les plats
+                </a>
+                <a href="affichcmd.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800">
+                    <i class="fas fa-history mr-2"></i> Historique commandes
+                </a>
+                <a href="gestion_commandes.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800">
+                    <i class="fas fa-tasks mr-2"></i> Gérer les commandes
+                </a>
+                <a href="gestion_reservations.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800">
+                    <i class="fas fa-calendar-alt mr-2"></i> Gérer les réservations
+                </a>
+                <a href="reservation.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800">
+                    <i class="fas fa-calendar-plus mr-2"></i> Réserver
+                </a>
+                <a href="recherche.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800">
+                    <i class="fas fa-search mr-2"></i> Recherche
+                </a>
+                <a href="logout.php" class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-800 text-red-400">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
+                </a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Tableau de bord Administrateur</h2>
+            <!-- Statistiques -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center hover:scale-105 transition">
+                    <div class="text-4xl text-blue-500 mb-2"><i class="fas fa-receipt"></i></div>
+                    <div class="text-2xl font-bold"><?php echo $totalCommandes; ?></div>
+                    <div class="text-gray-600">Commandes passées</div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center hover:scale-105 transition">
+                    <div class="text-4xl text-green-500 mb-2"><i class="fas fa-utensils"></i></div>
+                    <div class="text-2xl font-bold"><?php echo $totalPlats; ?></div>
+                    <div class="text-gray-600">Plats disponibles</div>
+                </div>
+                <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center hover:scale-105 transition">
+                    <div class="text-4xl text-indigo-500 mb-2"><i class="fas fa-users"></i></div>
+                    <div class="text-2xl font-bold"><?php echo $totalUtilisateurs; ?></div>
+                    <div class="text-gray-600">Utilisateurs inscrits</div>
                 </div>
             </div>
-            <div class="col-md-4 mb-3">
-                <div class="dashboard-card bg-white p-4">
-                    <div class="dashboard-icon text-success mb-2"><i class="fas fa-utensils"></i></div>
-                    <h4><?php echo $totalPlats; ?></h4>
-                    <p class="mb-0">Plats disponibles</p>
+            <!-- Dernières commandes -->
+            <div class="bg-white rounded-xl shadow mb-8">
+                <div class="bg-gray-800 text-white px-6 py-4 rounded-t-xl flex items-center">
+                    <i class="fas fa-clock mr-2"></i> 5 dernières commandes
                 </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="dashboard-card bg-white p-4">
-                    <div class="dashboard-icon text-info mb-2"><i class="fas fa-users"></i></div>
-                    <h4><?php echo $totalUtilisateurs; ?></h4>
-                    <p class="mb-0">Utilisateurs inscrits</p>
-                </div>
-            </div>
-        </div>
-        <div class="card shadow rounded">
-            <div class="card-header bg-dark text-white">
-                <i class="fas fa-clock"></i> 5 dernières commandes
-            </div>
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-striped mb-0">
-                        <thead>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-100">
                             <tr>
-                                <th>Date</th>
-                                <th>Utilisateur</th>
-                                <th>Plat</th>
-                                <th>Quantité</th>
-                                <th>Prix Total</th>
-                                <th>Statut</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Utilisateur</th>
+                                <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Plat</th>
+                                <th class="px-6 py-3 text-center text-xs font-bold text-gray-700 uppercase">Quantité</th>
+                                <th class="px-6 py-3 text-right text-xs font-bold text-gray-700 uppercase">Prix Total</th>
+                                <th class="px-6 py-3 text-center text-xs font-bold text-gray-700 uppercase">Statut</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="bg-white divide-y divide-gray-200">
                             <?php foreach ($dernieresCommandes as $cmd): ?>
                                 <tr>
-                                    <td><?php echo date('d/m/Y H:i', strtotime($cmd['date_commande'])); ?></td>
-                                    <td><?php echo htmlspecialchars($cmd['nom_utilisateur']); ?></td>
-                                    <td><?php echo htmlspecialchars($cmd['nom_plat']); ?></td>
-                                    <td><?php echo $cmd['quantite']; ?></td>
-                                    <td><?php echo number_format($cmd['prix_total'], 0, ',', ' '); ?> FCFA</td>
-                                    <td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><?php echo date('d/m/Y H:i', strtotime($cmd['date_commande'])); ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($cmd['nom_utilisateur']); ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($cmd['nom_plat']); ?></td>
+                                    <td class="px-6 py-4 text-center"><?php echo $cmd['quantite']; ?></td>
+                                    <td class="px-6 py-4 text-right"><?php echo number_format($cmd['prix_total'], 0, ',', ' '); ?> FCFA</td>
+                                    <td class="px-6 py-4 text-center">
                                         <?php
                                             $statut = strtolower($cmd['statut']);
                                             if ($statut == 'en attente') {
-                                                echo '<span class="badge badge-warning">En attente</span>';
+                                                echo '<span class="inline-block px-3 py-1 rounded-full bg-yellow-400 text-gray-900 text-xs font-semibold">En attente</span>';
                                             } elseif ($statut == 'validée' || $statut == 'validee') {
-                                                echo '<span class="badge badge-success">Validée</span>';
+                                                echo '<span class="inline-block px-3 py-1 rounded-full bg-green-500 text-white text-xs font-semibold">Validée</span>';
                                             } elseif ($statut == 'refusée' || $statut == 'refusee') {
-                                                echo '<span class="badge badge-danger">Refusée</span>';
+                                                echo '<span class="inline-block px-3 py-1 rounded-full bg-red-500 text-white text-xs font-semibold">Refusée</span>';
                                             } else {
-                                                echo '<span class="badge badge-secondary">'.htmlspecialchars($cmd['statut']).'</span>';
+                                                echo '<span class="inline-block px-3 py-1 rounded-full bg-gray-400 text-white text-xs font-semibold">'.htmlspecialchars($cmd['statut']).'</span>';
                                             }
                                         ?>
                                     </td>
@@ -175,17 +134,14 @@ $dernieresCommandes = $bdd->query("
                             <?php endforeach; ?>
                             <?php if (empty($dernieresCommandes)): ?>
                                 <tr>
-                                    <td colspan="6" class="text-center text-muted">Aucune commande récente.</td>
+                                    <td colspan="6" class="px-6 py-4 text-center text-gray-400">Aucune commande récente.</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
-    <!-- Bootstrap JS and FontAwesome -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

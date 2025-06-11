@@ -43,99 +43,86 @@ $reservations = $bdd->query("
 <head>
     <meta charset="UTF-8">
     <title>Gestion des réservations</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        .badge-en-attente { background: #ffc107; color: #212529; }
-        .badge-validée { background: #28a745; }
-        .badge-refusée { background: #dc3545; }
-        .badge-annulée { background: #6c757d; }
-        .table thead th { background: #343a40; color: #fff; }
-        .action-btns form { display: inline; }
-        .action-btns .btn { margin-right: 0.2rem; }
-        .edit-form { background: #f8f9fa; padding: 10px; border-radius: 8px; }
-    </style>
 </head>
-<body>
-<div class="container py-5">
-    <h2 class="mb-4"><i class="fas fa-calendar-alt"></i> Gestion des réservations</h2>
-    <table class="table table-bordered table-hover bg-white">
-        <thead class="thead-dark">
-            <tr>
-                <th>Utilisateur</th>
-                <th>Plat</th>
-                <th>Date</th>
-                <th>Heure</th>
-                <th>Personnes</th>
-                <th>Commentaire</th>
-                <th>Statut</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach($reservations as $r): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($r['email']); ?></td>
-                <td><?php echo $r['plat_nom'] ? htmlspecialchars($r['plat_nom']) : 'Table seule'; ?></td>
-                <td><?php echo $r['date_reservation']; ?></td>
-                <td><?php echo $r['heure_reservation']; ?></td>
-                <td><?php echo $r['nombre_personnes']; ?></td>
-                <td><?php echo htmlspecialchars($r['commentaire']); ?></td>
-                <td>
-                    <?php
-                        $statut = strtolower($r['statut']);
-                        if ($statut == 'en attente') {
-                            echo '<span class="badge badge-en-attente">En attente</span>';
-                        } elseif ($statut == 'validée' || $statut == 'validee') {
-                            echo '<span class="badge badge-validée">Validée</span>';
-                        } elseif ($statut == 'refusée' || $statut == 'refusee') {
-                            echo '<span class="badge badge-refusée">Refusée</span>';
-                        } elseif ($statut == 'annulée' || $statut == 'annulee') {
-                            echo '<span class="badge badge-annulée">Annulée</span>';
-                        } else {
-                            echo '<span class="badge badge-secondary">'.htmlspecialchars($r['statut']).'</span>';
-                        }
-                    ?>
-                </td>
-                <td class="action-btns">
-                    <?php if ($statut == 'en attente'): ?>
-                        <form method="post" style="display:inline;">
-                            <input type="hidden" name="reservation_id" value="<?php echo $r['id']; ?>">
-                            <button name="action" value="valider" class="btn btn-success btn-sm" title="Valider"><i class="fas fa-check"></i></button>
-                            <button name="action" value="refuser" class="btn btn-danger btn-sm" title="Refuser"><i class="fas fa-times"></i></button>
-                            <button name="action" value="annuler" class="btn btn-secondary btn-sm" title="Annuler"><i class="fas fa-ban"></i></button>
-                        </form>
-                        <!-- Formulaire de modification inline -->
-                        <button class="btn btn-info btn-sm" onclick="toggleEditForm(<?php echo $r['id']; ?>)">Modifier</button>
-                        <form method="post" class="edit-form mt-2" id="edit-form-<?php echo $r['id']; ?>" style="display:none;">
-                            <input type="hidden" name="reservation_id" value="<?php echo $r['id']; ?>">
-                            <input type="hidden" name="action" value="modifier">
-                            <div class="form-row">
-                                <div class="col">
-                                    <input type="date" name="date_reservation" class="form-control" value="<?php echo $r['date_reservation']; ?>" required>
+<body class="bg-gray-50 min-h-screen">
+<div class="container mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold mb-8 text-gray-800 flex items-center gap-2"><i class="fas fa-calendar-alt"></i> Gestion des réservations</h2>
+    <div class="overflow-x-auto shadow rounded-xl bg-white">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-900 text-white">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-bold uppercase">Utilisateur</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold uppercase">Plat</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold uppercase">Date</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold uppercase">Heure</th>
+                    <th class="px-6 py-3 text-center text-xs font-bold uppercase">Personnes</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold uppercase">Commentaire</th>
+                    <th class="px-6 py-3 text-center text-xs font-bold uppercase">Statut</th>
+                    <th class="px-6 py-3 text-center text-xs font-bold uppercase">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            <?php foreach($reservations as $r): ?>
+                <tr>
+                    <td class="px-6 py-4"><?php echo htmlspecialchars($r['email']); ?></td>
+                    <td class="px-6 py-4"><?php echo $r['plat_nom'] ? htmlspecialchars($r['plat_nom']) : 'Table seule'; ?></td>
+                    <td class="px-6 py-4"><?php echo $r['date_reservation']; ?></td>
+                    <td class="px-6 py-4"><?php echo $r['heure_reservation']; ?></td>
+                    <td class="px-6 py-4 text-center"><?php echo $r['nombre_personnes']; ?></td>
+                    <td class="px-6 py-4"><?php echo htmlspecialchars($r['commentaire']); ?></td>
+                    <td class="px-6 py-4 text-center">
+                        <?php
+                            $statut = strtolower($r['statut']);
+                            if ($statut == 'en attente') {
+                                echo '<span class="inline-block px-3 py-1 rounded-full bg-yellow-400 text-gray-900 text-xs font-semibold">En attente</span>';
+                            } elseif ($statut == 'validée' || $statut == 'validee') {
+                                echo '<span class="inline-block px-3 py-1 rounded-full bg-green-500 text-white text-xs font-semibold">Validée</span>';
+                            } elseif ($statut == 'refusée' || $statut == 'refusee') {
+                                echo '<span class="inline-block px-3 py-1 rounded-full bg-red-500 text-white text-xs font-semibold">Refusée</span>';
+                            } elseif ($statut == 'annulée' || $statut == 'annulee') {
+                                echo '<span class="inline-block px-3 py-1 rounded-full bg-gray-400 text-white text-xs font-semibold">Annulée</span>';
+                            } else {
+                                echo '<span class="inline-block px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-xs font-semibold">'.htmlspecialchars($r['statut']).'</span>';
+                            }
+                        ?>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <?php if ($statut == 'en attente'): ?>
+                            <form method="post" class="inline-block">
+                                <input type="hidden" name="reservation_id" value="<?php echo $r['id']; ?>">
+                                <button name="action" value="valider" class="px-3 py-1 rounded bg-green-500 text-white hover:bg-green-600 transition text-xs" title="Valider"><i class="fas fa-check"></i></button>
+                                <button name="action" value="refuser" class="px-3 py-1 rounded bg-red-500 text-white hover:bg-red-600 transition text-xs" title="Refuser"><i class="fas fa-times"></i></button>
+                                <button name="action" value="annuler" class="px-3 py-1 rounded bg-gray-400 text-white hover:bg-gray-500 transition text-xs" title="Annuler"><i class="fas fa-ban"></i></button>
+                            </form>
+                            <button class="px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition text-xs ml-2" onclick="toggleEditForm(<?php echo $r['id']; ?>)">Modifier</button>
+                            <form method="post" class="edit-form mt-2" id="edit-form-<?php echo $r['id']; ?>" style="display:none;">
+                                <input type="hidden" name="reservation_id" value="<?php echo $r['id']; ?>">
+                                <input type="hidden" name="action" value="modifier">
+                                <div class="flex flex-wrap gap-2 mb-2">
+                                    <input type="date" name="date_reservation" class="px-2 py-1 border rounded" value="<?php echo $r['date_reservation']; ?>" required>
+                                    <input type="time" name="heure_reservation" class="px-2 py-1 border rounded" value="<?php echo $r['heure_reservation']; ?>" required>
+                                    <input type="number" name="nombre_personnes" class="px-2 py-1 border rounded" min="1" value="<?php echo $r['nombre_personnes']; ?>" required>
+                                    <input type="text" name="commentaire" class="px-2 py-1 border rounded" value="<?php echo htmlspecialchars($r['commentaire']); ?>">
+                                    <button type="submit" class="px-3 py-1 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition text-xs">Enregistrer</button>
                                 </div>
-                                <div class="col">
-                                    <input type="time" name="heure_reservation" class="form-control" value="<?php echo $r['heure_reservation']; ?>" required>
-                                </div>
-                                <div class="col">
-                                    <input type="number" name="nombre_personnes" class="form-control" min="1" value="<?php echo $r['nombre_personnes']; ?>" required>
-                                </div>
-                                <div class="col">
-                                    <input type="text" name="commentaire" class="form-control" value="<?php echo htmlspecialchars($r['commentaire']); ?>">
-                                </div>
-                                <div class="col">
-                                    <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
-                                </div>
-                            </div>
-                        </form>
-                    <?php else: ?>
-                        <span class="text-muted"><i class="fas fa-ban"></i> Aucune action</span>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+                            </form>
+                        <?php else: ?>
+                            <span class="text-gray-400 text-xs"><i class="fas fa-ban"></i> Aucune action</span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <?php if (empty($reservations)): ?>
+                <tr>
+                    <td colspan="8" class="px-6 py-4 text-center text-gray-400">Aucune réservation trouvée.</td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 <script>
 function toggleEditForm(id) {
